@@ -5,7 +5,7 @@ import customtkinter
 import threading
 
 root_tk = tkinter.Tk()
-root_tk.geometry("400x200")
+root_tk.geometry("400x300")  # Adjusted height to accommodate the progress bar
 root_tk.config(background='blue')
 root_tk.title("YouTube Downloader")
 
@@ -44,17 +44,15 @@ def button_function():
         messagebox.showinfo("Download", "Canceled")
 
 
-# Entry widget configuration with increased size
 entry = customtkinter.CTkEntry(master=root_tk)
-entry.place(relx=100,rely=30, height=50, width=300, anchor=tkinter.CENTER)
+entry.grid(row=0, column=0, padx=20, pady=20, sticky='ew')  # Added padding and set sticky to 'ew' for center alignment
+
+# Button widget configuration with increased size and matching height
+button = customtkinter.CTkButton(master=root_tk, corner_radius=10, command=button_function)
+button.grid(row=0, column=1, padx=20, pady=20, sticky='ew')  # Added padding and set sticky to 'ew' for center alignment
 
 # Progress bar configuration
 progress_var = tkinter.DoubleVar()
 progress_bar = ttk.Progressbar(master=root_tk, variable=progress_var, maximum=100)
-progress_bar.place(relx=0.5, rely=0.6, height=30, width=300, anchor='center')
-
-# Button widget configuration with increased size and matching height
-button = customtkinter.CTkButton(master=root_tk, corner_radius=10, command=button_function, height=50, width=100)
-button.place(relx=0.5, rely=0.4, anchor='w')
-
+progress_bar.grid(row=1, column=0, columnspan=2, padx=20, pady=20, sticky='ew')  # Added padding and set sticky to 'ew' for center alignment
 root_tk.mainloop()
